@@ -11,6 +11,6 @@ router.use(clientsRoutes);
 router.use("/client", authenticateClientRoutes);
 router.use("/deliveryman", authenticateDeliverymanRouts);
 router.use(deliverymanRoutes);
-router.use(deliveryRoutes);
+router.use("/delivery", deliveryRoutes);
 
 export { router };
