@@ -8,10 +8,10 @@ const clientsRoutes = Router();
 const createClientController = new CreateClientController();
 const findAllDeliveriesController = new FindAllDeliveriesController();
 
-clientsRoutes.post("/client", createClientController.handle);
+clientsRoutes.post("/", createClientController.handle);
 
 clientsRoutes.get(
-  "/client/deliveries",
+  "/deliveries",
   ensureAuthenticateClient,
   findAllDeliveriesController.handle
 );

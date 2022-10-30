@@ -7,10 +7,10 @@ import { deliverymanRoutes } from "./deliveryman.routes";
 
 const router = Router();
 
-router.use(clientsRoutes);
+router.use("/client", clientsRoutes);
 router.use("/client", authenticateClientRoutes);
 router.use("/deliveryman", authenticateDeliverymanRouts);
-router.use(deliverymanRoutes);
+router.use("/deliveryman", deliverymanRoutes);
 router.use("/delivery", deliveryRoutes);
 
 export { router };

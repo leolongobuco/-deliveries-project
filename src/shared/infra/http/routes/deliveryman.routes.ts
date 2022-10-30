@@ -9,10 +9,10 @@ const createDeliverymanController = new CreateDeliverymanController();
 const findAllDeliveriesDeliverymanController =
   new FindAllDeliveriesDeliverymanController();
 
-deliverymanRoutes.post("/deliveryman", createDeliverymanController.handle);
+deliverymanRoutes.post("/", createDeliverymanController.handle);
 
 deliverymanRoutes.get(
-  "/deliveryman/deliveries",
+  "/deliveries/:id",
   ensureAuthenticateDeliveryman,
   findAllDeliveriesDeliverymanController.handle
 );
