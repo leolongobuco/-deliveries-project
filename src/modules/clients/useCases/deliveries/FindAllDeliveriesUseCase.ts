@@ -1,17 +1,21 @@
-import { prisma } from "../../../../database/prismaClient";
+import { inject, injectable } from "tsyringe";
 
+import { IFindAllDeliveriesRespository } from "../../repositories/IFindAllDeliveriesRepository";
+
+interface IFindAllDeliveries {
+  idClient: string;
+}
+
+@injectable()
 class FindAllDeliveriesUseCase {
-  async execute(idClient: string) {
-    const deliveries = await prisma.clients.findMany({
-      where: {
-        id: idClient,
-      },
-      select: {
-        username: true,
-        id: true,
-        deliveries: true,
-      },
-    });
+  constructor(
+    @inject("FindAllDeliveriesRepository")
+    private findAllDeliveriesRepository: IFindAllDeliveriesRespository
+  ) {}
+
+  async execute({ idClient }: IFindAllDeliveries) {
+    const deliveries =
+      await this.findAllDeliveriesRepository.findManyDeliveries(idClient);
 
     return deliveries;
   }
