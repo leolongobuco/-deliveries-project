@@ -2,12 +2,8 @@ import { Clients } from "@prisma/client";
 import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
+import { ICreateClientsDTO } from "../../dtos/ICreateClientsDTO";
 import { IClientsRepository } from "../../repositories/IClientsRepository";
-
-interface ICreateClient {
-  username: string;
-  password: string;
-}
 
 @injectable()
 class CreateClientUseCase {
@@ -16,8 +12,8 @@ class CreateClientUseCase {
     private clientsRepository: IClientsRepository
   ) {}
 
-  async execute({ password, username }: ICreateClient): Promise<Clients> {
-    const clientExist = await this.clientsRepository.findOneByUsername(
+  async execute({ password, username }: ICreateClientsDTO): Promise<Clients> {
+    const clientExist = await this.clientsRepository.findOneClientByUsername(
       username
     );
 
